@@ -162,7 +162,59 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 
 //instantiate a vga_controller, ball, and color_mapper here with the ports.
 vga_controller vga(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .hs(VGA_HS), .vs(VGA_VS), .pixel_clk(VGA_Clk), .blank(blank), .sync(sync), .DrawX(drawxsig), .DrawY(drawysig));
+
 //ball b0(.Reset(Reset_h), .frame_clk(VGA_VS), .keycode(keycode), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig));
+
 //color_mapper cmap(.BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue));
-punch_example punch(.DrawX(drawxsig), .DrawY(drawysig - 130), .vga_clk(VGA_Clk), .blank(blank), .red(VGA_R), .green(VGA_G), .blue(VGA_B));
+
+// Main file for all animations and sprite drawings with KARATE JOE
+punch_example punch(.DrawX(drawxsig), .DrawY(drawysig), .vga_clk(VGA_Clk), .blank(blank), .red(VGA_R), .green(VGA_G), .blue(VGA_B));
+
+logic IDLE,
+	  PUNCH_1,
+	  J_Press,
+	  K_Press;
+
+always_comb begin
+	if(8'h04 == keycode) begin
+	J_Press = 1'b1; // This is technically A but will be used for experimenting
+	K_Press = 1'b0;
+	end
+	else if(8'h07 == keycode) begin
+		J_Press = 1'b0;
+		K_Press = 1'b1;
+	end
+	else begin
+		J_Press = 1'b0;
+		K_Press = 1'b0;
+	end
+end
+
+
+
+//ISDU animate(.Clk(MAX10_CLK1_50),
+//			 .J_Press(J_Press),
+//			 .K_Press(K_Press),
+//			 .IDLE(IDLE),
+//			 .PUNCH_1(PUNCH_1),
+//			 .PUNCH_2(),
+//			 .PUNCH_3(),
+//			 .HIT3_1(),
+//			 .HIT3_2(),
+//			 .HIT3_3(),
+//			 .HIT3_4(),
+//			 .CRJAB_1(),
+//			 .CRJAB_2(),
+//			 .CRJAB_3(),
+//			 .KICK_1(),
+//			 .KICK_2(),
+//			 .KICK_3(),
+//			 .UPCUT_1(),
+//			 .UPCUT_2(),
+//			 .FAIL_1(),
+//			 .FAIL_2(),
+//			 .FAIL_3());
+
 endmodule
+
+

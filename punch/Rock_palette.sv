@@ -1,9 +1,9 @@
 module Rock_palette (
 	input logic [3:0] index,
-	output logic [3:0] red, green, blue
+	output logic [7:0] red, green, blue
 );
 
-localparam [0:15][11:0] palette = {
+localparam [0:15][23:0] palette = {
 	{4'h0, 4'h0, 4'h0},
 	{4'hB, 4'hF, 4'hF},
 	{4'h0, 4'h0, 4'h0},

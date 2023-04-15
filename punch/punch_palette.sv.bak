@@ -4,14 +4,14 @@ module punch_palette (
 );
 
 localparam [0:7][11:0] palette = {
-	{4'h0, 4'h0, 4'h0},
-	{4'h7, 4'hA, 4'hD},
-	{4'h0, 4'h0, 4'h0},
-	{4'hB, 4'hF, 4'hF},
-	{4'h3, 4'h4, 4'h4},
-	{4'h0, 4'h1, 4'h0},
-	{4'h5, 4'h8, 4'h9},
-	{4'h1, 4'h8, 4'h2}
+	{8'h0, 8'h0, 8'h0},
+	{8'h5, 8'h8, 8'hA},
+	{8'h0, 8'h0, 8'h0},
+	{8'h7, 8'hA, 8'hD},
+	{8'h1, 8'h7, 8'h3},
+	{8'h2, 8'h3, 8'h3},
+	{8'h0, 8'h2, 8'h1},
+	{8'hB, 8'hF, 8'hF}
 };
 
 assign {red, green, blue} = palette[index];
